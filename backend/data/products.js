@@ -1,6 +1,5 @@
 const products = [
   {
-    _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
     image: "/images/airpods.jpg",
     description:
@@ -13,7 +12,6 @@ const products = [
     numReviews: 12,
   },
   {
-    _id: "2",
     name: "Sony WH-1000XM4 Wireless Headphones",
     image: "/images/alexa.jpg",
     description:
@@ -26,7 +24,6 @@ const products = [
     numReviews: 20,
   },
   {
-    _id: "3",
     name: "Samsung Galaxy S21 Ultra",
     image: "/images/camera.jpg",
     description:
@@ -39,7 +36,6 @@ const products = [
     numReviews: 18,
   },
   {
-    _id: "4",
     name: "Dell XPS 13 Laptop",
     image: "/images/mouse.jpg",
     description:
@@ -52,7 +48,6 @@ const products = [
     numReviews: 25,
   },
   {
-    _id: "5",
     name: "Canon EOS R5 Mirrorless Camera",
     image: "/images/phone.jpg",
     description:
@@ -65,7 +60,6 @@ const products = [
     numReviews: 15,
   },
   {
-    _id: "6",
     name: "Logitech MX Master 3 Wireless Mouse",
     image: "/images/playstation.jpg",
     description:
@@ -78,7 +72,6 @@ const products = [
     numReviews: 22,
   },
   {
-    _id: "7",
     name: "LG OLED C1 65-Inch 4K Smart TV",
     image: "/images/sample.jpg",
     description:
@@ -91,7 +84,6 @@ const products = [
     numReviews: 30,
   },
   {
-    _id: "8",
     name: "Fitbit Charge 5 Fitness Tracker",
     image: "/images/screens.png",
     description:
