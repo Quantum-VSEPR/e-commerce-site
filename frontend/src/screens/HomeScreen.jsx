@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 function HomeScreen() {
   const [products, setProducts] = useState([]);
-  console.log(products);
   useEffect(() => {
     const fetchProducts = async () => {
       const { data } = await axios.get("/api/products");
