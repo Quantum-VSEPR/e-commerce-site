@@ -9,7 +9,7 @@ import Message from "../components/Message";
 import Loader from "../components/Loader";
 
 import {
-  // useDeliverOrderMutation,
+  useDeliverOrderMutation,
   useGetOrderDetailsQuery,
   useGetPayPalClientIdQuery,
   usePayOrderMutation,
@@ -26,7 +26,8 @@ function OrderScreen() {
 
   const [payOrder, { isLoading: loadingPay }] = usePayOrderMutation();
 
-  // const [deliverOrder,{isLoading:loadingDeliver }] = useDeliverOrderMutation();
+  const [deliverOrder, { isLoading: loadingDeliver }] =
+    useDeliverOrderMutation();
 
   const { userInfo } = useSelector((state) => state.auth);
 
@@ -95,9 +96,14 @@ function OrderScreen() {
       });
   }
 
-  const deliverHandler = async () => {
-    await deliverOrder(orderId);
-    refetch();
+  const deliverOrderHandler = async () => {
+    try {
+      await deliverOrder(orderId);
+      refetch();
+      toast.success("Order is delivered");
+    } catch (err) {
+      toast.error(err?.data?.message || err.error);
+    }
   };
 
   return isLoading ? (
@@ -215,7 +221,21 @@ function OrderScreen() {
                   )}
                 </ListGroup.Item>
               )}
-              {/* Mark as delivered placeholder */}
+              {loadingDeliver && <Loader />}
+              {userInfo &&
+                userInfo.isAdmin &&
+                order.isPaid &&
+                !order.isDelivered && (
+                  <ListGroup.Item>
+                    <Button
+                      type="button"
+                      className="btn btn-block"
+                      onClick={deliverOrderHandler}
+                    >
+                      Mark As Delivered
+                    </Button>
+                  </ListGroup.Item>
+                )}
             </ListGroup>
           </Card>
         </Col>

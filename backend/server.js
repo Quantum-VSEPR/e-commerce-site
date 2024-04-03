@@ -1,3 +1,4 @@
+import path from "path";
 import express from "express";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
@@ -7,10 +8,13 @@ import productRoute from "./routes/productRouter.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import { errorHandler, notFound } from "./middleware/errorMiddleware.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
 const port = process.env.PORT || 5000;
 
 connectDB();
 const app = express();
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Body parser middleware
 app.use(express.json());
@@ -20,6 +24,7 @@ app.use(cookieParser());
 app.use("/api/products", productRoute);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
 
 app.get("/api/config/paypal", (req, res) =>
   res.send({ clientId: process.env.PAYPAL_CLIENT_ID })
