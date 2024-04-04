@@ -70,13 +70,10 @@ function ProductEditScreen() {
 
   async function uploadFileHandler(e) {
     const formData = new FormData();
-    console.log(e.target.files[0]);
     formData.append("image", e.target.files[0]);
 
-    console.log(formData.get("image"));
     try {
       const res = await uploadProductImage(formData).unwrap();
-      console.log(res.image);
       setImage(res.image);
       toast.success(res.message);
     } catch (err) {
@@ -130,6 +127,7 @@ function ProductEditScreen() {
               onChange={uploadFileHandler}
             ></Form.Control>
           </Form.Group>
+          {loadingUpload && <Loader />}
 
           <Form.Group controlId="brand" className="my-2">
             <Form.Label>Brand</Form.Label>
